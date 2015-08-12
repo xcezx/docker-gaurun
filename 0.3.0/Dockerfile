@@ -14,4 +14,6 @@ ONBUILD ADD gaurun.toml /opt/gaurun.toml
 ONBUILD ADD cert.pem    /opt/cert.pem
 ONBUILD ADD key.pem     /opt/key.pem
 
+EXPOSE 1056
+
 CMD ["gaurun", "-c", "/opt/gaurun.toml"]
