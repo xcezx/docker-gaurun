@@ -1,7 +1,7 @@
 FROM golang:1.4
 MAINTAINER xcezx <main.xcezx@gmail.com>
 
-ENV GAURUN_VERSION 0.3.0
+ENV GAURUN_VERSION 0.4.0
 ENV PATH $PATH:/opt/gaurun-$GAURUN_VERSION/bin
 
 RUN curl -L https://github.com/mercari/gaurun/archive/v$GAURUN_VERSION.tar.gz | tar -C /opt --extract --gzip \
