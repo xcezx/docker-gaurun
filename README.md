@@ -1,5 +1,10 @@
 # xcezx/gaurun
 
+## Supported tags and respective `Dockerfile` links
+
+- [`0.4.0` (*Dockerfile*)](https://github.com/xcezx/docker-gaurun/blob/0.4.0/Dockerfile)
+- [`0.3.0` (*Dockerfile*)](https://github.com/xcezx/docker-gaurun/blob/0.3.0/Dockerfile)
+
 ## Usage
 
 ```
