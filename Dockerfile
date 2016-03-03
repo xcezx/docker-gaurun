@@ -17,4 +17,3 @@ ONBUILD ADD ssl /etc/gaurun/ssl
 EXPOSE 1056
 
 CMD ["gaurun", "-c", "/etc/gaurun/gaurun.toml"]
-
