@@ -1,0 +1,12 @@
+language: bash
+services: docker
+
+env:
+  - GAURUN_VERSION=0.4.2
+
+script:
+  - docker build -t "xcezx/gaurun:$GAURUN_VERSION" .
+
+after_script:
+  - docker images
+
