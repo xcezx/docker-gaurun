@@ -3,6 +3,7 @@ services: docker
 
 env:
   - GAURUN_VERSION=0.4.2
+  - GAURUN_VERSION=0.4.1
 
 script:
   - docker build -t "xcezx/gaurun:$GAURUN_VERSION" .
