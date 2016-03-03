@@ -2,11 +2,26 @@ language: bash
 services: docker
 
 env:
-  - GAURUN_VERSION=0.4.2
-  - GAURUN_VERSION=0.4.1
+  matrix:
+    - GAURUN_VERSION=0.4.2
+    - GAURUN_VERSION=0.4.1
+  global:
+    # DOCKER_HUB_USERNAME
+    - secure: "J6tIJby+cOPjVhbA97PHZtaJLvfwzBUJCTNYQQBHld/4vlRsy0PbCTroriyyGHr9QTIDML3gVR9ht1Q7Qo0EBlvUXbEk6xVsNtaaWTEBTpqLrpecTrIS9hLGf9lXNRFmb+v5yMnrS7Nzqa0ndl8Rf/phTivq+1PLrVrJUDFvowKn2QHx7mx7LYXygQoQQ8SG587LZuzPkYXBj1KNxMxPzJsP0a/uVubHJgQruu4Oc4Km9k5GHvK/ToWB9Q/p2lyhZvnPtHcjnYCyrdfe5odoIok7C6S3pt44L0LINMCWvWzhz8cWuT1Xlc56V9iLibz+OoHWcTIc8m0FFwohyCP4c9li2T1X4HH9VysFlSMDZujqDs33Jy5xTSTcZzP2UrclslI2/IByuejw1tI4q3VmTnfpJqk31u4JfxGM9OdcFjhQgTciOu5pNL9bVcVaC2UDidO8zMmaAk0++/tg1QwN+tTwTl1+K0auI+QOcxKz4xXsI8Ks8cjtHkkvF+fAn/ildQDa0Vzj9sGHDaUf4DkMyIQyfH9OSiPs0vcRWpKTs36SYsdi7mgmdl+7zq/yogSBQdj0sEUiSIW1K3cw5N3+KPCCgVFHuiSGZa4wPtBe4hNa7z+IVhh0WZsaB5dPDiseTdddimglJ5WjS3q+UbE5ueQKslFKSr2YvS4FXIEyTfc="
+    # DOCKER_HUB_EMAIL
+    - secure: "C/+uI8FB0TLeyURTsoCW/vOQzH4Z+DRDTfu/AEtYj3nNWc/LmPVWNnh+ebZ8HH58D7rnH2dJ7igJslXeN03xk+j7MtmF29FcRBwZ0s1DFBDLIjAyLrNXGzqjAkOc/KjL1zOb+3yn1Dl73s6XHp3ZvG7Q+7nyJgWJqCPuDndJn4fuKX+r3ooZ0xJlBBSfz5g/0OHOZdsB1+Rt3GGCGvKXyNSbBwvs7MBmZhcag+FfTZ9n1wg34CJNF3Kserz1k/FNN9B+c9D8CkdsY7aZmJZ/5VdiMyK7mxHyvmOWpoDsPsChJK9bX0JWpjFjLIwMU+CEsKrc3CosC1arOMSR5257+bAmtpHFOFxA1nZFRWBMrm/cAqzSaxDtyXPQaXuOKOIwVLzV9NzD6BSy8ZoPCHnkbakCTOKMuocsZDKOjZTqrQSUSk07Dergu/CgIOv17wAw4DWtTKln7KU+OuIkttHueYfq0RPvbwJr3jh4a1Ipa6uvaTDgrwbWi+DfLLjXp2W5eUTzll7cWs/cRBu9TteZsDBDbPFsFidCB1ZI/sIduHKrP0+1/sNMlutikdLmRbTegbLku+CdU3h03PwvSoS5oSk+s7HWdBbbA7ZPVfg9AlB5huHl36scxtB5cPZi6q8yadtNw38ptSydKdsvBZkFmVCQRdsUoh1TuE9v50wcDc0="
+    # DOCKER_HUB_PASSWORD
+    - secure: "d4llOzsqctO/EVpQYmb0Oi524KETO2fbzlkJd1GthkNj6FnXHeymG0Txvmv0HfzG0Ycuaciy8DRwdDol0GOgQbusHljicYHp/JZf8VpyCtQsdh36Pjb+yipDNeeD5C+KWQSk55s5UuzRN3Gbrffld+uA2TOkC2ezH2Musw+/wZlL5SD2NGuZuBZ1WJZnJe09j74bipiDknHN5unpLl903oSi/xGgevcTsjlKmvyxFfo8TPUhwAl09VPKAM9Pusot7Vp58cR6pHNW/yNS0FZy+ov+jnbhyuBs6Jr4finKzkGzzkdEeVWoPsnTRDWK+rmXMcveCm2o1jFKlFxO5g2fFvSamr1IK9k9bM1ZNXF97PoVe1aaqba77THRSPW17bsO8CWZmBDSn8khOxuoFmH6E626/fOPyeGmqoWGuS+yA4d1POrwAWKU6cXymtUpzux18nJ7/p8kAZCq6xBBDnJBOoQdTN44wpto4L6Kz3edvdCTZ/YL8HRw8VB8oBNCaxwM6Yw71y0YJNe/1qizS1tEm1C4DVJUb1GnO6m4da33WM1vArLkbz0nocefisQq+C6Yvn5qB/sX7qHhPSuKocD5BoJ3Trsy6EWpmYky+HEhPYgpTTRdZeebjy0WyiLMyL/LWq3hszIEkCMeZ1O0OEnL6GJl/zC9pdp9zq2MAc9yR+U="
+
+before_script:
+  - image="xcezx/gaurun:$GAURUN_VERSION"
 
 script:
-  - docker build -t "xcezx/gaurun:$GAURUN_VERSION" .
+  - docker build -t "$image" .
 
 after_script:
   - docker images
+
+after_success:
+  - docker login --username "$DOCKER_HUB_USERNAME" --email "$DOCKER_HUB_EMAIL" --password "$DOCKER_HUB_PASSWORD"
+  - '[ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && docker push "$image"'
