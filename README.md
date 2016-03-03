@@ -1,4 +1,4 @@
-# xcezx/gaurun
+# xcezx/gaurun [![Build Status](https://travis-ci.org/xcezx/docker-gaurun.svg?branch=master)](https://travis-ci.org/xcezx/docker-gaurun)
 
 ## Usage
 
