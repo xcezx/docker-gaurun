@@ -15,7 +15,7 @@ script:
 
 after_script:
   - docker images
+  - docker login -e="$DOCKER_EMAIL" -u=$"DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 after_success:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - '[ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && docker push "$image"'
