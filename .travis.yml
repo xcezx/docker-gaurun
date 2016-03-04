@@ -2,11 +2,21 @@ language: bash
 services: docker
 
 env:
-  - GAURUN_VERSION=0.4.2
-  - GAURUN_VERSION=0.4.1
+  matrix:
+    - GAURUN_VERSION=0.4.2
+    - GAURUN_VERSION=0.4.1
+  global:
+
+before_script:
+  - image="xcezx/gaurun:$GAURUN_VERSION"
 
 script:
-  - docker build -t "xcezx/gaurun:$GAURUN_VERSION" .
+  - docker build -t "$image" .
+
+after_success:
+  - printenv $DOCKER_USERNAME
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - '[ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && docker push "$image"'
 
 after_script:
   - docker images
