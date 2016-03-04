@@ -23,5 +23,5 @@ after_script:
   - docker images
 
 after_success:
-  - docker login --username "$DOCKER_HUB_USERNAME" --email "$DOCKER_HUB_EMAIL" --password "$DOCKER_HUB_PASSWORD"
+  - docker login --username $DOCKER_HUB_USERNAME --email $DOCKER_HUB_EMAIL --password $DOCKER_HUB_PASSWORD
   - '[ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && docker push "$image"'
