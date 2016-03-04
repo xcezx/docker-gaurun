@@ -14,7 +14,7 @@ script:
   - docker build -t "$image" .
 
 after_success:
-  - docker login -e="$DOCKER_EMAIL" -u=$"DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - '[ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && docker push "$image"'
 
 after_script:
