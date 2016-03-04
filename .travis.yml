@@ -6,12 +6,6 @@ env:
     - GAURUN_VERSION=0.4.2
     - GAURUN_VERSION=0.4.1
   global:
-    # DOCKER_HUB_USERNAME
-    - secure: "J6tIJby+cOPjVhbA97PHZtaJLvfwzBUJCTNYQQBHld/4vlRsy0PbCTroriyyGHr9QTIDML3gVR9ht1Q7Qo0EBlvUXbEk6xVsNtaaWTEBTpqLrpecTrIS9hLGf9lXNRFmb+v5yMnrS7Nzqa0ndl8Rf/phTivq+1PLrVrJUDFvowKn2QHx7mx7LYXygQoQQ8SG587LZuzPkYXBj1KNxMxPzJsP0a/uVubHJgQruu4Oc4Km9k5GHvK/ToWB9Q/p2lyhZvnPtHcjnYCyrdfe5odoIok7C6S3pt44L0LINMCWvWzhz8cWuT1Xlc56V9iLibz+OoHWcTIc8m0FFwohyCP4c9li2T1X4HH9VysFlSMDZujqDs33Jy5xTSTcZzP2UrclslI2/IByuejw1tI4q3VmTnfpJqk31u4JfxGM9OdcFjhQgTciOu5pNL9bVcVaC2UDidO8zMmaAk0++/tg1QwN+tTwTl1+K0auI+QOcxKz4xXsI8Ks8cjtHkkvF+fAn/ildQDa0Vzj9sGHDaUf4DkMyIQyfH9OSiPs0vcRWpKTs36SYsdi7mgmdl+7zq/yogSBQdj0sEUiSIW1K3cw5N3+KPCCgVFHuiSGZa4wPtBe4hNa7z+IVhh0WZsaB5dPDiseTdddimglJ5WjS3q+UbE5ueQKslFKSr2YvS4FXIEyTfc="
-    # DOCKER_HUB_EMAIL
-    - secure: "C/+uI8FB0TLeyURTsoCW/vOQzH4Z+DRDTfu/AEtYj3nNWc/LmPVWNnh+ebZ8HH58D7rnH2dJ7igJslXeN03xk+j7MtmF29FcRBwZ0s1DFBDLIjAyLrNXGzqjAkOc/KjL1zOb+3yn1Dl73s6XHp3ZvG7Q+7nyJgWJqCPuDndJn4fuKX+r3ooZ0xJlBBSfz5g/0OHOZdsB1+Rt3GGCGvKXyNSbBwvs7MBmZhcag+FfTZ9n1wg34CJNF3Kserz1k/FNN9B+c9D8CkdsY7aZmJZ/5VdiMyK7mxHyvmOWpoDsPsChJK9bX0JWpjFjLIwMU+CEsKrc3CosC1arOMSR5257+bAmtpHFOFxA1nZFRWBMrm/cAqzSaxDtyXPQaXuOKOIwVLzV9NzD6BSy8ZoPCHnkbakCTOKMuocsZDKOjZTqrQSUSk07Dergu/CgIOv17wAw4DWtTKln7KU+OuIkttHueYfq0RPvbwJr3jh4a1Ipa6uvaTDgrwbWi+DfLLjXp2W5eUTzll7cWs/cRBu9TteZsDBDbPFsFidCB1ZI/sIduHKrP0+1/sNMlutikdLmRbTegbLku+CdU3h03PwvSoS5oSk+s7HWdBbbA7ZPVfg9AlB5huHl36scxtB5cPZi6q8yadtNw38ptSydKdsvBZkFmVCQRdsUoh1TuE9v50wcDc0="
-    # DOCKER_HUB_PASSWORD
-    - secure: "gbeqqj9uGQSi0CinyXcaGfKbwfLzHBzT4LGxK7dOy8zb+gwoVvlWwIl/uuNIAX22G/nVWaFhouQT6pjOycjA6SSe4EtcLA3A9XkkV6+Nin+sqbTDibS7PIpw/o7m8s0XBXezoeJJbJagHCh675XfVs91lY34rGXnU+uLz4gJ8qfbcOCUtNPo7mZ2jz0jk2Gfce/tszoGF6XFf3DF0hLmIXLecxM9Sfs4w1mDN1tvxQy8Q2pYBHiZyyc9GTIY6PJBYAWji91wwWzwM7w0lp9F7QisyOw6vzWAAIvuQatNz/fqeU7mgaicQabezukUE6RWWToFHinlHwdew4+A4ZVVqI6VaE0YMGXCtSlOToEN2nj3uAqWjvIF+QJqFHySSzUk/oXK+3DH4h2+/LxIuW79eSXunm+yCWdQntES063Eqq7BJNNZREyfmqm2kYfeF3elNYvUwH5YJt0kwTIJlZeq1GquPikHdwPo49cpcUhox3jOwKSUikHUZKqqLVuEL18oa8CKzw7g1gG4DPxoqzvS8iYhhEGN1gAOdCApSclPo8suNgSH0f5mskj4hqBu1Ml+rP0t0j4wqhGRf5zfODAod3JUVGAuE/mT9+0LDWZKqOGRJduELQ1n+nYUANQs2kbT9MAtxIR0NC9oYJXxLWb12G6MqXIZjZgrnnRax/YcXbs="
 
 before_script:
   - image="xcezx/gaurun:$GAURUN_VERSION"
@@ -23,5 +17,5 @@ after_script:
   - docker images
 
 after_success:
-  - docker login --username=$DOCKER_HUB_USERNAME --email=$DOCKER_HUB_EMAIL --password=$DOCKER_HUB_PASSWORD
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - '[ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && docker push "$image"'
