@@ -7,6 +7,7 @@ env:
 
 script:
   - docker build -t "xcezx/gaurun:$GAURUN_VERSION" .
+  - docker run -it --rm "xcezx/gaurun:$GAURUN_VERSION" gaurun -v
 
 after_script:
   - docker images
