@@ -1,15 +1,15 @@
 FROM alpine:3.3
 MAINTAINER xcezx <main.xcezx@gmail.com>
 
-ARG GAURUN_VERSION
 ENV GAURUN_VERSION ${GAURUN_VERSION:-0.4.2}
 
-RUN apk add --update ca-certificates && rm -rf /var/cache/apk/*
-RUN wget -O - https://github.com/mercari/gaurun/releases/download/v${GAURUN_VERSION}/gaurun-linux-amd64-${GAURUN_VERSION}.tar.gz \
+RUN apk add --update-cache --no-cache --virtual build-dependencies ca-certificates \
+    && wget -O - https://github.com/mercari/gaurun/releases/download/v${GAURUN_VERSION}/gaurun-linux-amd64-${GAURUN_VERSION}.tar.gz \
     | tar vzxf - \
     && install -m 755 /gaurun-${GAURUN_VERSION}/gaurun /usr/local/bin/gaurun \
     && install -m 755 /gaurun-${GAURUN_VERSION}/gaurun_recover /usr/local/bin/gaurun_recover \
-    && rm -rf /gaurun-${GAURUN_VERSION}
+    && rm -rf /gaurun-${GAURUN_VERSION} \
+    && apk del build-dependencies
 
 ONBUILD ADD gaurun.toml /etc/gaurun/gaurun.toml
 ONBUILD ADD ssl /etc/gaurun/ssl
