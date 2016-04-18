@@ -1,7 +1,8 @@
 FROM alpine:3.3
 MAINTAINER xcezx <main.xcezx@gmail.com>
 
-ENV GAURUN_VERSION ${GAURUN_VERSION:-0.4.3}
+ARG GAURUN_VERSION
+ENV GAURUN_VERSION ${GAURUN_VERSION:-0.4.2}
 
 RUN apk add --update ca-certificates && rm -rf /var/cache/apk/*
 RUN wget -O - https://github.com/mercari/gaurun/releases/download/v${GAURUN_VERSION}/gaurun-linux-amd64-${GAURUN_VERSION}.tar.gz \
