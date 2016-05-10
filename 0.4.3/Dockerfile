@@ -14,4 +14,4 @@ RUN set -x \
     && tar -xvf gaurun-$GAURUN_VERSION.tar.gz \
     && install -m 755 gaurun-$GAURUN_VERSION/gaurun /usr/local/bin/gaurun \
     && install -m 755 gaurun-$GAURUN_VERSION/gaurun_recover /usr/local/bin/gaurun_recover \
-    && rm -rf garunt-$GAURUN_VERSION.tar.gz gaurun-$GAURUN_VERSION
+    && rm -rf gaurun-$GAURUN_VERSION.tar.gz gaurun-$GAURUN_VERSION
