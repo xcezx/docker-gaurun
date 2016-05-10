@@ -2,12 +2,16 @@ language: bash
 services: docker
 
 env:
-  - GAURUN_VERSION=0.4.2
-  - GAURUN_VERSION=0.4.1
+  - VERSION=0.4.3 VARIANT=
+
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - image="xcezx/gaurun:${VERSION}${VARIANT:+-$VARIANT}"
 
 script:
-  - docker build -t "xcezx/gaurun:$GAURUN_VERSION" .
-  - docker run -it --rm "xcezx/gaurun:$GAURUN_VERSION" gaurun -v
+  - docker build -t "$image" "${VARIANT:-.}"
+  - docker run -it --rm "$image" gaurun -v
 
 after_script:
   - docker images

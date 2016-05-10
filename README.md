@@ -7,8 +7,9 @@
 ```
 docker run --name gaurun -d \
     -p 1056:1056 \
-    -v $PWD/gaurun.toml:/etc/gaurun/gaurun.toml \
-    -v $PWD/cert.pem:/etc/gaurun/ssl/cert.pem \
-    -v $PWD/key.pem:/etc/gaurun/ssl/key.pem \
-    xcezx/gaurun
+    -v `pwd`/gaurun.toml:/gaurun.toml \
+    -v `pwd`/cert.pem:/cert.pem \
+    -v `pwd`/key.pem:/key.pem \
+    x/gaurun:0.4.3 \
+    gaurun -c /gaurun.toml
 ```
