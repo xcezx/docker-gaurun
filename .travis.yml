@@ -7,6 +7,7 @@ env:
 
 script:
   - docker build -t "xcezx/gaurun:${TAG}" -f ${VARIANT}/Dockerfile ${VARIANT}
+  - docker run -it --rm "xcezx/gaurun:${TAG}" gaurun -v
 
 after_script:
   - docker images
