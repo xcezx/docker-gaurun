@@ -19,5 +19,4 @@ RUN buildDeps='wget' \
     && rm gaurun.tar.gz \
     && apt-get purge -y --auto-remove $buildDeps
 
-# overwrite
 CMD ["/usr/local/bin/gaurun", "-v"]
