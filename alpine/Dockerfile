@@ -17,4 +17,3 @@ RUN apk add --no-cache --virtual .build-deps \
 
 # overwrite
 CMD ["/usr/local/bin/gaurun", "-v"]
-
