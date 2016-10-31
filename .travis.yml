@@ -2,12 +2,17 @@ language: bash
 services: docker
 
 env:
-  - TAG=latest VARIANT=debian
-  - TAG=alpine VARIANT=alpine
+  - VERSION=0.7.0 VARIANT=
+  - VERSION=0.7.0 VARIANT=alpine
+
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - image="xcezx/gaurun:${VERSION}${VARIANT:+-$VARIANT}"
 
 script:
-  - docker build -t "xcezx/gaurun:${TAG}" -f ${VARIANT}/Dockerfile ${VARIANT}
-  - docker run -it --rm "xcezx/gaurun:${TAG}" gaurun -v
+  - docker build -t "$image" "${VARIANT:-.}"
+  - docker run -it --rm "$image" gaurun -v
 
 after_script:
   - docker images
