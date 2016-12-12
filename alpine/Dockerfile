@@ -3,8 +3,8 @@ MAINTAINER xcezx <main.xcezx@gmail.com>
 
 RUN apk add --no-cache ca-certificates
 
-ENV GAURUN_VERSION 0.7.0
-ENV GAURUN_SHA1 79510ecce5148a58ae3620158ba9f52c6fe1f87c
+ENV GAURUN_VERSION 0.7.1
+ENV GAURUN_SHA1 8ef020738f267afcfc9398fa5d11c7d29e75de78
 
 RUN apk add --no-cache --virtual .build-deps \
         tar \
