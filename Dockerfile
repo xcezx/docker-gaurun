@@ -6,8 +6,8 @@ RUN apt-get update \
        ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-ENV GAURUN_VERSION 0.8.1
-ENV GAURUN_SHA1 3c9750bab6a5c6c7b866ffc7056ef2b977492c05
+ENV GAURUN_VERSION 0.9.0
+ENV GAURUN_SHA1 ab2aa080e48190fbf4792d928994cb66186925fd
 
 RUN buildDeps='wget' \
     && set -x \
