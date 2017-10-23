@@ -3,8 +3,8 @@ MAINTAINER xcezx <main.xcezx@gmail.com>
 
 RUN apk add --no-cache ca-certificates
 
-ENV GAURUN_VERSION 0.7.1
-ENV GAURUN_SHA1 8ef020738f267afcfc9398fa5d11c7d29e75de78
+ENV GAURUN_VERSION 0.8.0
+ENV GAURUN_SHA1 449f28fd877bb1603add52e48007d53ed1e5094e
 
 RUN apk add --no-cache --virtual .build-deps \
         tar \
@@ -15,5 +15,4 @@ RUN apk add --no-cache --virtual .build-deps \
     && rm gaurun.tar.gz \
     && apk del .build-deps
 
-# overwrite
-CMD ["/usr/local/bin/gaurun", "-v"]
+CMD ["/usr/local/bin/gaurun"]

@@ -6,7 +6,6 @@ env:
   - VARIANT=alpine
 
 before_script:
-  - env | sort
   - cd "${VARIANT:-.}"
   - image="xcezx/gaurun:${VARIANT:-latest}"
 
